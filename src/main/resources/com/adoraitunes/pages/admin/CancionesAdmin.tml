@@ -1,0 +1,72 @@
+<html t:type="Layout"  title="Administar Canciones"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+        <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
+
+    <section class="vbox">
+        <section class="scrollable padder-lg w-f-md" id="bjax-target">
+          <div class="m-b-md">
+            <h3 class="m-b-none">Agregar nueva cancion</h3>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <t:alerts showDismissAll="false"/>
+              <section class="panel panel-default">
+                <header class="panel-heading font-bold">Nueva Canci&oacute;n</header>
+                <div class="panel-body">
+                  <t:form role="form" t:id="cancionesForm">
+                    <div class="form-group">
+                      <label>Nombre</label>
+                      <input class="form-control" t:type="TextField" t:id="nombre" value="nombre" validate="required, maxLength=100, minLength=2" placeholder="¿C&oacute;mo se llama la cancion?"></input>
+                    </div>
+                    <div class="form-group">
+                      <label>Cantante</label>
+                      <input class="form-control" t:type="TextField" t:id="cantante" value="cantante" validate="required, maxLength=100, minLength=2" placeholder="¿Qui&eacute;n la canta?"></input>
+                    </div>
+                    <div class="form-group">
+                      <label>Portada</label>
+                      <input class="form-control" t:type="TextField" t:id="portada" value="portada" validate="required, maxLength=300, minLength=2" placeholder="¿Cu&aacute;l es el link de la portada?"></input>
+                    </div>
+                    <div class="form-group">
+                      <label>Link</label>
+                      <input class="form-control" t:type="TextField" t:id="link" value="link" validate="required, maxLength=300, minLength=2" placeholder="¿Cu&aacute;l es el link de la canci&oacute;n?"></input>
+                    </div>
+                    <div class="form-group">
+                      <label>Prioridad</label>
+                      <input class="form-control" t:type="TextField" t:id="prioridad" value="prioridad" placeholder="Establezca la prioridad en la que debe mostrarse"></input>
+                    </div>
+                    <div class="checkbox i-checks">
+                      <label>
+                        <input t:type="CheckBox" t:id="inicio" value="inicio"></input>
+                        <i></i>
+                        ¿Se mostrar&aacute; en la p&aacute;gina de inicio?
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-1 control-label">Inspiracion</label>
+                      <div class="col-sm-11">
+                        <t:RadioGroup value="radioSelectedValue">
+                          <div class="radio">
+                            <label>
+                              <t:Radio t:id="radio1" value="literal:C" type="radio" name="group"/>
+                              Catolica
+                            </label>
+                          </div>
+                          <div class="radio">
+                            <label>
+                              <t:Radio t:id="radio2" value="literal:E" type="radio" name="group"/>
+                              Evangelica
+                            </label>
+                          </div>
+                        </t:RadioGroup>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-default">Guardar</button>
+                  </t:form>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+    </section>
+</html>

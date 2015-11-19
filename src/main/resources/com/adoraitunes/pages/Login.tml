@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter"
+      lang="es" class="app" >
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <title>AdoraiTunes | Tiempo De Revolución</title>
+    <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!--[if lt IE 9]>
+    <script src="layout/js/ie/html5shiv.js"></script>    <script src="layout/js/ie/respond.min.js"></script>
+    <script src="layout/js/ie/excanvas.js"></script>  <![endif]-->
+  </head>
+  <body class="bg-info dker">
+    <section id="content" class="m-t-lg wrapper-md animated fadeInUp">
+      <div class="container aside-xl"> <a class="navbar-brand block" href="index.html"><span
+            class="h1 font-bold">AdoraiTunes</span></a>
+        <section class="m-b-lg">
+          <header class="wrapper text-center"> <strong>Inicia tu sesión</strong>
+          </header>
+          <t:form t:id="loginForm" >
+            <t:errors/>
+            <div class="form-group"> 
+            	<input t:type="TextField" t:id="usuario" value="correo" placeholder="Correo Electr&oacute;nico" class="form-control rounded input-lg text-center no-border"  />
+            </div>
+            <div class="form-group"> 
+            	<input t:type="PasswordField" t:id="password"  placeholder="Contraseña" class="form-control rounded input-lg text-center no-border" type="password" />
+            </div>
+            <button type="submit"  class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded"><i
+                class="icon-arrow-right pull-right"></i><span
+                class="m-r-n-lg">Iniciar</span></button>
+            <div class="text-center m-t m-b"><a href="#"><small>Olvidaste tu contraseña?</small></a></div>
+            <div class="line line-dashed"></div>
+            <p class="text-muted text-center"><small>No tienes una cuenta?</small></p>
+            <a href="#modal-form" data-toggle="modal" class="btn btn-lg btn-info btn-block rounded">Crea una!</a> </t:form>
+
+        </section>
+      </div>
+    </section>
+    <div class="modal fade" id="modal-form">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body wrapper-lg">
+                    <div class="row">
+                        <div class="col-sm-6 b-r">
+                            <h3 style="color: #788188;" class="m-t-none m-b">Registrate</h3>
+                            <t:form t:id="signInForm" clientValidation="none">
+                                <t:errors/>
+                                <div style="color: #788188;" class="form-group">
+                                    <label>Nombre</label>
+                                    <input class="form-control" placeholder="Escribe tu nombre" t:type="TextField" value="nombre" />
+                                </div>
+                                <div style="color: #788188;" class="form-group">
+                                    <label>Apellidos</label>
+                                    <input class="form-control" placeholder="Escribe tus apellidos" t:type="TextField" value="apellidos" />
+                                </div>
+                                <div style="color: #788188;" class="form-group">
+                                    <label>Correo</label>
+                                    <input class="form-control" placeholder="Escribe tu correo" t:type="TextField" value="correo" />
+                                </div>
+                                <div style="color: #788188;" class="form-group">
+                                    <label>Password</label>
+                                    <input class="form-control" placeholder="Password" t:type="PasswordField" value="password" />
+                                </div>
+                                <div style="color: #788188;" class="checkbox m-t-lg">
+                                    <button type="submit" class="btn btn-sm btn-success pull-right text-uc m-t-n-xs">
+                                        <strong>¡Regístrate!</strong>
+                                    </button>
+                                    <label>
+                                        <input t:type="CheckBox" value="remember" /> Recuerdame </label>
+                                </div>
+                            </t:form>
+                        </div>
+                        <div style="color: #788188;" class="col-sm-6">
+                            <h4>O si lo prefieres:</h4>
+                            <a href="#" class="btn btn-primary btn-block m-b-sm">
+                                <i class="fa fa-facebook pull-left"></i>
+                                Registrate con Facebook
+                            </a>
+                            <a href="#" class="btn btn-info btn-block m-b-sm">
+                                <i class="fa fa-twitter pull-left"></i>
+                                Registrate con Twitter
+                            </a>
+                            <a href="#" class="btn btn-danger btn-block">
+                                <i class="fa fa-google-plus pull-left"></i>
+                                Registrate con Google+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- footer -->
+    <footer id="footer">
+      <div class="text-center padder">
+        <p> <small>Web app framework base on Bootstrap<br />
+            © 2014</small> </p>
+      </div>
+    </footer>
+  </body>
+
+</html>

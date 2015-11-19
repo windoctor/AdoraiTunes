@@ -1,0 +1,28 @@
+description = "AdoraiTunes application"
+
+apply plugin: "war"
+apply plugin: "java"
+apply plugin: "jetty"
+
+repositories {
+    mavenCentral()
+
+    maven {
+        url "https://repository.apache.org/content/groups/staging"
+    }
+}
+
+
+dependencies {
+
+    compile 'org.apache.tapestry:tapestry-core:5.4-beta-35'
+    compile('org.tynamo:tapestry-security:0.5.1') {
+        exclude(group: 'org.apache.shiro')
+    }
+    compile 'org.apache.shiro:shiro-all:1.2.1'
+    compile 'org.mongodb:mongodb-driver:3.0.4'
+    compile 'org.jongo:jongo:1.2'
+    providedCompile 'javax.servlet:servlet-api:2.5'
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+}

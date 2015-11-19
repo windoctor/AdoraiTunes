@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter"
+      lang="es" class="app" >
+
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    </head>
+    <body>
+        <section class="panel panel-default">
+            <header class="panel-heading font-bold">
+                Registrar
+            </header>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input class="form-control" type="text" placeholder="Nombre"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos</label>
+                        <input class="form-control" type="text" placeholder="Apellidos"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo</label>
+                        <input class="form-control" type="email" placeholder="Correo"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input class="form-control" type="text" placeholder="Contraseña"/>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>
