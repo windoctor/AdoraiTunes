@@ -1,0 +1,8 @@
+# Ignores
+\.DS_Store
+\.idea
+\gradle
+AdoraiTunes.iml
+\classes
+\gradlew
+gradlew.bat
