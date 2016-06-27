@@ -24,6 +24,10 @@
                       <input class="form-control" t:type="TextField" t:id="cantante" value="cantante" validate="required, maxLength=100, minLength=2" placeholder="¿Qui&eacute;n la canta?"></input>
                     </div>
                     <div class="form-group">
+                      <label>Album</label>
+                      <input class="form-control" t:type="TextField" t:id="album" value="album" validate="required, maxLength=100, minLength=2" placeholder="¿A que album pertenece?"></input>
+                    </div>
+                    <div class="form-group">
                       <label>Portada</label>
                       <input class="form-control" t:type="TextField" t:id="portada" value="portada" validate="required, maxLength=300, minLength=2" placeholder="¿Cu&aacute;l es el link de la portada?"></input>
                     </div>
@@ -31,15 +35,11 @@
                       <label>Link</label>
                       <input class="form-control" t:type="TextField" t:id="link" value="link" validate="required, maxLength=300, minLength=2" placeholder="¿Cu&aacute;l es el link de la canci&oacute;n?"></input>
                     </div>
-                    <div class="form-group">
-                      <label>Prioridad</label>
-                      <input class="form-control" t:type="TextField" t:id="prioridad" value="prioridad" placeholder="Establezca la prioridad en la que debe mostrarse"></input>
-                    </div>
                     <div class="checkbox i-checks">
                       <label>
-                        <input t:type="CheckBox" t:id="inicio" value="inicio"></input>
+                        <input t:type="CheckBox" t:id="playListDefault" value="playListDefault"></input>
                         <i></i>
-                        ¿Se mostrar&aacute; en la p&aacute;gina de inicio?
+                        Agregar al playlist default
                       </label>
                     </div>
                     <div class="form-group">

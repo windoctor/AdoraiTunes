@@ -3,8 +3,11 @@ package com.adoraitunes.pages;
 
 import com.adoraitunes.entities.Cancion;
 import com.adoraitunes.entities.Usuario;
+import com.adoraitunes.enums.Inspiracion;
+import com.adoraitunes.managers.CancionManager;
 import com.adoraitunes.services.interfaces.IUsuarioService;
 import com.adoraitunes.services.interfaces.ICancionesService;
+import com.adoraitunes.utils.Utils;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Environmental;
@@ -13,7 +16,6 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
-import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.tynamo.security.services.SecurityService;
 
@@ -33,81 +35,36 @@ public class Index
     @Inject
     private ICancionesService cancionesService;
 
-    @Inject
-    private IUsuarioService userService;
-
     @Property
     private Cancion cancion;
 
+    @Property Cancion nueva;
+
     @Property private Integer indexCatolica;
 
-    private Integer index;
+    @Property private Integer numeroEstrella;
 
-    @Property List<Cancion> cancionesCatolicas;
-    @Property List<Cancion> cancionesEvangelicas;
+    @Property List<Cancion> playList;
+    @Property List<Cancion> recienAgregadas;
 
-    @Inject private SecurityService securityService;
-
-    @Property
-    @Persist(value = PersistenceConstants.SESSION)
-    private Usuario usuario;
-
-    private List<Cancion> filtrarPorTipo(List<Cancion> canciones, String filtro){
-        List<Cancion> resultado = new LinkedList<>();
-
-        for(Cancion c : canciones){
-            if(c.getInspiracion().equals(filtro))
-                resultado.add(c);
-        }
-
-        return resultado;
-    }
-
-    private JSONArray filtrarPorTipo(List<Cancion> canciones){
-        JSONArray array = new JSONArray();
-        for(Cancion c : canciones){
-
-            JSONObject json = new JSONObject();
-            json.put("nombre", c.getNombre() );
-            json.put("cantante", c.getCantante() );
-            json.put("link", c.getLink() );
-            json.put("portada", c.getPortada() );
-            json.put("inicio", c.getInicio() );
-
-            array.put(json);
-        }
-        return array;
-    }
 
     void setupRender () {
 
-        List<Cancion> canciones = cancionesService.obtenerPlayList("default");
-        cancionesCatolicas = filtrarPorTipo(canciones, Cancion.CATOLICA);
-        cancionesEvangelicas = filtrarPorTipo(canciones, Cancion.EVANGELICA);
+        recienAgregadas = cancionesService.obtenerRecienAgregadas();
 
-        if(usuario == null) {
-            usuario = userService.findUserByName(securityService.getSubject().getPrincipal().toString());
-        }
+        CancionManager cancionManager = new CancionManager(cancionesService.obtenerPlayList("default"));
 
-        support.require("jPlayer/demo").invoke("init").with((JSONArray) filtrarPorTipo(cancionesCatolicas));
-        support.require("jPlayer/demo").invoke("init").with((JSONArray) filtrarPorTipo(cancionesEvangelicas));
+        playList = cancionManager.filtrar(Inspiracion.CATOLICA);
+
+        support.require("jPlayer/demo").invoke("init").with((JSONArray) Utils.cancionToJSONArray(playList));
 
     }
 
-    public void setIndexEvangelica(Integer index){
-        this.index = index;
+    /**
+     * Utilizado en el tml para evaluar y crear las estrellas del rank de cada cancion
+     * @return true si numeroEstrella es menor al ranking de la canción.
+     */
+    public boolean isStar(){
+        return numeroEstrella <= cancion.getRank();
     }
-    public Integer getIndexEvangelica(){
-        return index+=cancionesCatolicas.size();
-    }
-
-    public boolean isRatingComplete(Integer value){
-        if(value < 5) return false;
-        else return true;
-    }
-
-    public boolean isLike(Object id){
-        return Arrays.asList(usuario.getSonglikes()).contains(id);
-    }
-
 }

@@ -85,7 +85,7 @@ define("jPlayer/demo",["jquery"],function($){
                 ready: function () {
                     $(this).jPlayer("setMedia", {
                         title: "† = ♥ #DisLeAuMonde",
-                        m4v: "layout/js/jPlayer/glorious.mp4"
+                        m4v: "https://www.youtube.com/embed/UmGZSzc27Pk"
                     }).jPlayer("play");
                 },
                 preload: "auto",

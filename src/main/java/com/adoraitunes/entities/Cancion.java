@@ -1,10 +1,14 @@
 package com.adoraitunes.entities;
 
+import com.adoraitunes.enums.Inspiracion;
+import org.apache.commons.lang3.StringUtils;
 import org.bson.types.ObjectId;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Date;
-import java.util.DoubleSummaryStatistics;
 
 public class Cancion implements Serializable{
 
@@ -12,17 +16,16 @@ public class Cancion implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -5583277772346155855L;
-    public static final String CATOLICA = "CATOLICA";
-    public static final String EVANGELICA = "EVANGELICA";
 
     private ObjectId _id;
 
 	private String nombre;
 	private String cantante;
+    private String album;
 	private String link;
 	private String portada;
-    private String inspiracion;
-    private Boolean inicio;
+    private Inspiracion inspiracion;
+    private String[] playlist;
     private Date fecha;
     private Double plays;
     private Double likes;
@@ -36,10 +39,15 @@ public class Cancion implements Serializable{
     }
 
     public Cancion(String nombre, String cantante, String link, String portada) {
-        this.nombre = nombre;
-        this.cantante = cantante;
+        this.nombre = StringUtils.upperCase(nombre);
+        this.cantante = StringUtils.upperCase(cantante);
         this.link = link;
         this.portada = portada;
+    }
+
+    public Cancion(String nombre, Inspiracion inspiracion) {
+        this.nombre = StringUtils.upperCase(nombre);
+        this.inspiracion = inspiracion;
     }
 
     public String getNombre() {
@@ -47,7 +55,7 @@ public class Cancion implements Serializable{
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = StringUtils.upperCase(nombre);
     }
 
     public String getCantante() {
@@ -55,7 +63,7 @@ public class Cancion implements Serializable{
     }
 
     public void setCantante(String cantante) {
-        this.cantante = cantante;
+        this.cantante = StringUtils.upperCase(cantante);
     }
 
     public String getLink() {
@@ -74,19 +82,11 @@ public class Cancion implements Serializable{
         this.portada = portada;
     }
 
-    public Boolean getInicio() {
-        return inicio;
-    }
-
-    public void setInicio(Boolean inicio) {
-        this.inicio = inicio;
-    }
-
-    public String getInspiracion() {
+    public Inspiracion getInspiracion() {
         return inspiracion;
     }
 
-    public void setInspiracion(String inspiracion) {
+    public void setInspiracion(Inspiracion inspiracion) {
         this.inspiracion = inspiracion;
     }
 
@@ -114,21 +114,34 @@ public class Cancion implements Serializable{
         this.likes = likes;
     }
 
-    public Long getRating(){
-        double r = likes/plays;
-        return Math.round(r*5);
-    }
-
-    public Long getRating2(){
-        return 5 - getRating();
-    }
-
     public Integer getPrioridad() {
         return prioridad;
     }
 
     public void setPrioridad(Integer prioridad) {
         this.prioridad = prioridad;
+    }
+
+    public String[] getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(String[] playlist) {
+        this.playlist = playlist;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = StringUtils.upperCase(album);
+    }
+
+    public Integer getRank(){
+        return new BigDecimal(likes / plays)
+                .multiply(new BigDecimal(5))
+                .setScale(0, RoundingMode.DOWN).intValue();
     }
 
     @Override
@@ -140,11 +153,31 @@ public class Cancion implements Serializable{
                 ", link='" + link + '\'' +
                 ", portada='" + portada + '\'' +
                 ", inspiracion='" + inspiracion + '\'' +
-                ", inicio=" + inicio +
                 ", fecha=" + fecha +
                 ", plays=" + plays +
                 ", likes=" + likes +
                 ", prioridad=" + prioridad +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cancion cancion = (Cancion) o;
+
+        if (_id != null ? !_id.equals(cancion._id) : cancion._id != null) return false;
+        if (nombre != null ? !nombre.equals(cancion.nombre) : cancion.nombre != null) return false;
+        return !(inspiracion != null ? !inspiracion.equals(cancion.inspiracion) : cancion.inspiracion != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = _id != null ? _id.hashCode() : 0;
+        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
+        result = 31 * result + (inspiracion != null ? inspiracion.hashCode() : 0);
+        return result;
     }
 }

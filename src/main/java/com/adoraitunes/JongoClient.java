@@ -15,7 +15,7 @@ public class JongoClient {
     private Jongo instance;
 
     public JongoClient(){
-        mongoClient = new MongoClient("127.0.0.1");
+        mongoClient = new MongoClient("localhost");
         database = mongoClient.getDB("mundobyte");
         instance = new Jongo(database);
 

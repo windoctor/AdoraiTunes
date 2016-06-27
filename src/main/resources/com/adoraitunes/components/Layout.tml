@@ -640,7 +640,7 @@
           <div class="row">
          	 <div class="col-sm-12">
                   <div class="panel">
-                  	 <!-- video player -->
+                  	 <!-- video player
                     <div id="jp_container_1">
                       <div class="jp-type-single pos-rlt">
                         <div id="jplayer_1" class="jp-jplayer jp-video"></div>
@@ -688,8 +688,11 @@
                           To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
                         </div>
                       </div>
-                    </div>
+                    </div>-->
                     <!-- / video player -->
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/UmGZSzc27Pk" frameborder="0" allowfullscreen="true">
+
+                    </iframe>
                   </div>
                   <h5><strong>Glorious</strong> un grupo católico genial!! </h5>   
              </div>                      	 

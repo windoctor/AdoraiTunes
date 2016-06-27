@@ -7,6 +7,4 @@ import com.adoraitunes.entities.Cancion;
  */
 public interface IAdminService {
 
-    void addCancion(Cancion cancion);
-
 }
